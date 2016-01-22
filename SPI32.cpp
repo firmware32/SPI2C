@@ -11,8 +11,9 @@
 //
 //}
 
-
-
+#define SPIBEGIN digitalWrite(	currentConfg->spi_cs ,LOW); spiP->beginTransaction(spiSettings);
+#define SPIEND digitalWrite(	currentConfg->spi_cs ,HIGH); spiP->endTransaction();
+#define SP spiP
 
 SPI32::SPI32(SPIClass * s)
 {
@@ -29,18 +30,44 @@ SPI32::SPI32()
 
 void SPI32::write( byte data)
 {
+	SPIBEGIN
+		SP->transfer(data);
+	SPIEND
 }
 
 void SPI32::write( byte address, byte data)
 {
+	SPIBEGIN
+		SP->transfer(address);
+	    SP->transfer(data);
+	SPIEND
 }
 
 void SPI32::write( byte address, byte * data, int length)
 {
+	SPIBEGIN
+		SP->transfer(address);
+	for (uint8_t i = 0; i < length; i++)
+	 
+		SP->transfer(data[i]);
+
+	 
+	
+	SPIEND
+
 }
 
 void SPI32::write16( byte address, int16_t* data)
 {
+	SPIBEGIN
+		SP->transfer(address);
+ 
+		SP->transfer((uint8_t)data[0] << 8);
+		SP->transfer((uint8_t)data[1]);
+ 
+	SPIEND
+
+
 }
 
 void SPI32::writeBit( byte adress, byte bitNum, bool val)
@@ -49,6 +76,12 @@ void SPI32::writeBit( byte adress, byte bitNum, bool val)
 
 byte SPI32::read( byte address)
 {
+	byte b;
+	SPIBEGIN
+		SP->transfer(address);
+	b = SP->transfer(0x00);
+	 
+	SPIEND
 	return byte();
 }
 
