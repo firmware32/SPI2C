@@ -61,9 +61,8 @@ class SPI2C
 	virtual void setSPI2CConfig(SPI2C_config * con) = 0;
 	virtual int8_t  readBits( uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data) = 0;
 	virtual void  writeBits(  uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t data) = 0;
-	SPI2C_config * spi2cConfig;
+	 
 	SPI2C_config * currentConfg;
-
 	static SPI2C * setSPIC2C(SPI2C_config * t) ;
 };
 

@@ -15,7 +15,6 @@ void I2C32::init()
 		i2cEnabled = true;
 	}
 
-
 }
 
 I2C32::I2C32(TwoWire * w)
@@ -42,13 +41,10 @@ void I2C32::write(    byte reg, byte data)
 
 void I2C32::write(  byte reg, byte * data, int length)
 {
- 
 	wire->beginTransmission(currentConfg->i2c_address);
 	wire->write((uint8_t)reg);
-
 	for (uint8_t i = 0; i < length; i++) 
 		wire->write((uint8_t)data[i]);
-  
 	wire->endTransmission();
 
 }
@@ -71,13 +67,8 @@ void I2C32::writeBit(  byte adress, byte bitNum, bool val)
 
 byte I2C32::read(  byte address)
 { 
-	 
-	
 	byte b;
 	read(  address, &b, 1);
-
-	SerialUSB.println("here");
-	
 	return b;
 }
 
@@ -121,11 +112,6 @@ int16_t I2C32::read16(  byte address)
   int8_t I2C32::readBits( uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t * data)
   {
 	 
-		  // 01101001 read byte
-		  // 76543210 bit numbers
-		  //    xxx   args: bitStart=4, length=3
-		  //    010   masked
-		  //   -> 010 shifted
 	  uint8_t  b = read(  regAddr);
 
 			  uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
@@ -134,7 +120,7 @@ int16_t I2C32::read16(  byte address)
 			  *data = b;
 		 
 		 
-  return 1;
+  return b;
   }
 
 void I2C32::setSPI2CConfig(SPI2C_config * con)
@@ -159,4 +145,4 @@ void I2C32::writeBits(  uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8
 }
 
 
-//I2C32 i2c32;
+ 

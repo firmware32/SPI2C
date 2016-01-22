@@ -32,16 +32,10 @@ class I2C32  : public SPI2C
 	virtual int16_t read16(byte address) override;
 	virtual uint8_t readBit(byte address, byte bitNum) override;
 	virtual int8_t  readBits(  uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data) override;
- 
-	
-	// Inherited via SPI2C
 	virtual void setSPI2CConfig(SPI2C_config * con) override;
-
-	// Inherited via SPI2C
 	virtual void writeBits(  uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t data) override;
 };
 
-//extern I2C32 i2c32;
 
 #endif
 

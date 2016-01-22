@@ -4,7 +4,6 @@
 // 
 #include "SPI2C.h"
 #include <Wire.h>
-
 #include <SPI.h>
 #include "SPI32.h"
 #include "I2C32.h"
@@ -25,7 +24,7 @@ SPI2C * SPI2C::setSPIC2C(SPI2C_config * t)
 				break;
 			case SPI2C_type_e::SPI2C_SPI :
 			case SPI2C_type_e::SPI2C_SPI_TRANSACTIONAL:
-				return (SPI2C*)&i2c32;
+				return (SPI2C*)&spi32D;
 				break;
 #if defined(ARDUINO_SAM_DUE)
 			case SPI2C_type_e::SPI2C_I2C1:
