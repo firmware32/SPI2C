@@ -6,9 +6,10 @@ Many sensors now come in  two formats SPI or I2C lot of time the API is almost i
 //Easy to use:  works with Arduino DUE or Arduino Zero (SAMD21 boards)
 #include <SPI2C.h>
 #include <Wire.h>
+
 #include <SPI.h> // includE SPI
 #include "MPU6X_PARTIAL.h" //Not a complete library
-#define SER SerialUSB // Serial Choose appropriate
+#define SER SerialUSB  
 MPU6XXX32 MPU_I2C;
 MPU6XXX32 MPU_SPI;
 
